@@ -1,0 +1,9 @@
+Considerando a declaração int mat[4], *p, x;, quais das seguintes expressões são válidas?
+Justifique.
+
+p = mat + 1;
+p = mat++;
+p = ++mat;
+x = (*mat)++;
+
+Apenas a primeira e a última expressões são válidas, pois não é possível incrementar valores inteiros ao ponteiro, como acontece na segunda e terceira expressões. Na primeira expressão, o que ocorre é que uma unidade de endereço do tipo int é somada, isto é, dependendo da máquina, ocorre um salto de 4 bytes na memória. Na última expressão, o valor armazenado no endereço de mat é incrementado em um e armazenado em uma variável do tipo inteiro. 

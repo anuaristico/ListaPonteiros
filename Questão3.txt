@@ -1,0 +1,8 @@
+p = i; 		// Essa é uma expressão ilegal, pois i corresponde a um valor inteiro, enquanto p se refere a um endereço de memória no formato ponteiro para inteiro.
+q = &j;		// Não há problema.
+p = &*&i;	// Não há problema.
+i = (*&)j;	// Essa expressão é ilegal e não será compilada, pois o compilador não entende se você está se referindo ao endereço ou ao conteúdo da variável.
+i = *&j;	// Não há problema.
+i = *&*&j;	// Não há problema.
+q = *p;		// Essa é uma expressão ilegal, pois i corresponde a um valor inteiro, enquanto p se refere a um endereço de memória no formato ponteiro para inteiro.
+i = (*p)++ + *q;// Não há problema.
