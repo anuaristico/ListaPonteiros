@@ -1,65 +1,100 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void entrada_matriz(int x, int y, int **m);
-
+void multiplicaMatrizes(float **A, float **B, float **C, int linhasA, int colunasA, int colunasB) {
+    // Percorre todas as linhas de A
+    for (int i = 0; i < linhasA; i++) {
+        // Percorre todas as colunas de B
+        for (int j = 0; j < colunasB; j++) {
+            // Realiza a soma dos produtos dos elementos das linhas de A e colunas de B
+            for (int k = 0; k < colunasA; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
 int main() {
-  int **a, **b, **c;
-  int colunaA,colunaB,linhaA,linhaB;
+    int linhasA, colunasA, linhasB, colunasB;
 
-  printf("Linhas e colunas da matriz A:");
-  scanf("%d", &linhaA);
-  scanf("%d", &colunaA);
+    printf("Digite as dimensoes da matriz A (linhas e colunas): ");
+    scanf("%d %d", &linhasA, &colunasA);
 
-  printf("Linhas e colunas da matriz B:");
-  scanf("%d", &linhaB);
-  scanf("%d", &colunaB);
+    printf("Digite as dimensoes da matriz B (linhas e colunas): ");
+    scanf("%d %d", &linhasB, &colunasB);
 
-  a = malloc(linhaA*sizeof(int));
-  for (int i=0; i < linhaA; i++){   a[i] = malloc(colunaA * sizeof(int));}
-  
-  b = malloc(linhaB*sizeof(int));
-  for(int j=0; j < linhaB; j++){    b[j] = malloc(colunaB * sizeof(int));}
-  
-  c = malloc(linhaA*sizeof(int));
-  for(int k=0; k<linhaA; k++){      c[k] = malloc(colunaB * sizeof(int));}
-
-  printf("Entre com o elementos de A\n");
-  entrada_matriz (linhaA, colunaA, a);
-  
-  printf("Entre com o elementos de B\n");
-  entrada_matriz (linhaB, colunaB, b);
-
-    for( int i=0; i<linhaA; i++ ){
-        for (int j=0; j<colunaB; j++){
-            c[i][j] = a[i][j] + b[i][j];}
-        
+    if (colunasA != linhasB) {
+        printf("Erro: o numero de colunas de A deve ser igual ao numero de linhas de B.\n");
+        return 1;
     }
 
-  printf("Soma da Matriz A + Matriz B = Matriz C:\n");
-  for(int i=0; i<linhaA; i++){
-    for (int j=0; j<colunaB; j++){
-      printf("%d ", c[i][j]);
-    }printf("\n");
-  }
+    // Aloca memoria para as matrizes A, B e C
+    float **A = (float **) malloc(linhasA * sizeof(float *));
+    float **B = (float **) malloc(linhasB * sizeof(float *));
+    float **C = (float **) malloc(linhasA * sizeof(float *));
 
-  for(int i=0; i<linhaA; i++){free(a[i]);}
-  free(a);
-  
-  for(int i=0; i<linhaB; i++){free(b[i]);}
-  free(b);
-  
-  for(int i=0; i<linhaA; i++){free(c[i]);}
-  free(c);
-  
-  return 0;
-}
-
-void entrada_matriz(int x, int y, int **m){
-  for(int i=0; i<x; i++){
-    for(int j=0; j<y; j++){
-      printf("Digite o elemento %d%d da matriz\n", i+1, j+1);
-      scanf("%d", &m[i][j]);
+    for (int i = 0; i < linhasA; i++) {
+        A[i] = (float *) malloc(colunasA * sizeof(float));
+        C[i] = (float *) malloc(colunasB * sizeof(float));
     }
-  }
+    for (int i = 0; i < linhasB; i++) {
+        B[i] = (float *) malloc(colunasB * sizeof(float));
+    }
+
+    // Leitura das matrizes A e B
+    printf("Digite a matriz A:\n");
+    for (int i = 0; i < linhasA; i++) {
+        for (int j = 0; j < colunasA; j++) {
+            scanf("%f", &A[i][j]);
+        }
+    }
+
+    printf("Digite a matriz B:\n");
+    for (int i = 0; i < linhasB; i++) {
+        for (int j = 0; j < colunasB; j++) {
+            scanf("%f", &B[i][j]);
+        }
+    }
+
+    // Multiplica as matrizes A e B e armazena o resultado em C
+    multiplicaMatrizes(A, B, C, linhasA, colunasA, colunasB);
+
+    // Imprime as matrizes A, B e C
+    printf("Matriz A:\n");
+    for (int i = 0; i < linhasA; i++) {
+        for (int j = 0; j < colunasA; j++) {
+            printf("%f ", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("Matriz B:\n");
+    for (int i = 0; i < linhasB; i++) {
+        for (int j = 0; j < colunasB; j++) {
+            printf("%f ", B[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("Matriz C = A*B:\n");
+    for (int i = 0; i < linhasA; i++) {
+        for (int j = 0; j < colunasB; j++) {
+            printf("%f ", C[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Libera a memoria alocada para as matrizes
+    for (int i = 0; i < linhasA; i++) {
+        free(A[i]);
+        free(C[i]);
+    }
+    for (int i = 0; i < linhasB; i++) {
+        free(B[i]);
+    }
+    free(A);
+    free(B);
+    free(C);
+
+    return 0;
 }
+
