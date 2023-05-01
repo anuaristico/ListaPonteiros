@@ -1,0 +1,28 @@
+// O que é um ponteiro para uma função? Pesquise na Internet referências sobre o assunto e
+// escreva um pequeno programa exemplificando o uso deste recurso.
+
+
+/*Um ponteiro para uma função é uma variável que armazena o endereço de memória de uma função em vez de um valor. 
+Ele permite que você armazene uma função em uma variável e passe essa variável como argumento para outras funções,
+o que é util quando você deseja executar uma função em uma parte desejada do código. */
+
+#include <stdio.h>
+
+int subtrai(int a, int b) {
+    return a - b;
+}
+
+int operacao(int a, int b, int (*p)(int, int)) {
+    return p(a, b);
+}
+
+int main() {
+    int r;
+    int (*p)(int, int); 
+
+    p = subtrai; 
+    r = operacao(10, 5, p); 
+    printf("Resultado: %d\n", r); // saída: Resultado: 5
+
+    return 0;
+}
