@@ -1,0 +1,71 @@
+/*Reimplemente o programa da questão anterior utilizando a função qsort() do C. Comente o seu código, explicando o que faz cada uma das linhas.*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// função comparadora para qsort()
+int cmp(const void *a, const void *b) {
+    float *x = (float *)a;
+    float *y = (float *)b;
+    if (*x < *y) {
+        return -1;
+    } else if (*x > *y) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int main() {
+    int n, i;
+    float *vet;
+    clock_t t_inicio, t_fim;
+    double tempo_execucao;
+
+    printf("Digite o número de elementos: ");
+    scanf("%d", &n);
+
+    // alocação dinâmica de memória
+    vet = (float*)malloc(n * sizeof(float));
+
+    // leitura dos elementos
+    printf("Digite os elementos:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%f", &vet[i]);
+    }
+
+    // início da medição do tempo de execução
+    t_inicio = clock();
+
+    // ordenação dos elementos
+    qsort(vet, n, sizeof(float), cmp);
+
+    // fim da medição do tempo de execução
+    t_fim = clock();
+
+    tempo_execucao = (double)(t_fim - t_inicio) / CLOCKS_PER_SEC;
+
+    // impressão dos elementos ordenados
+    printf("Os elementos em ordem crescente são:\n");
+    for (i = 0; i < n; i++) {
+        printf("%f ", vet[i]);
+    }
+
+    // impressão do tempo de execução
+    printf("\nTempo de execucao: %lf segundos\n", tempo_execucao);
+
+    // liberação da memória alocada
+    free(vet);
+
+    return 0;
+}
+
+// A função qsort() ordena o vetor em ordem crescente de acordo com a função de comparação.
+
+
+
+
+
+
+
