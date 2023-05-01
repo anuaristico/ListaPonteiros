@@ -1,0 +1,11 @@
+/*Assumindo que pulo[] é um vetor do tipo int, quais das seguintes expressões referenciam o
+valor do terceiro elemento do vetor?
+ *(pulo + 2);
+  *(pulo + 4);
+ pulo + 4;
+ pulo + 2; *\
+// Resolução:
+// 	Para acessar o valor do terceiro elemento do vetor `pulo[]`, A expressão que melhor referência é '*(pulo + 2);', 
+//    Isso ocorre porque 'pulo' é um ponteiro para o primeiro elemento do vetor e deslocar o ponteiro de 2 posições 
+//	para a frente aponta para o terceiro elemento do vetor e posiciona no terceiro elemento, sendo assim, se os
+//	elementos do vetor estivessem destribuidos como: pulo[0,1,2], pulo[2] seria o terceiro elemento.
