@@ -1,30 +1,19 @@
-//programa 1
-int main(){
-    int vet[] = {4,9,13};       
-    int i;
-    for(i=0;i<3;i++){            
-        printf("%d ",*(vet+i));  
-    }
-    return 0;
+a) int main(){
+  int vet[] = {4,9,13};
+  int i;
+  for(i=0;i<3;i++){
+    printf("%d ",*(vet+i)); // *(vet+i) se refere aos valores armazenados nos endereços de memória do vetor
+  }
 }
 
+Este programa cria um vetor que armazena os valores 4, 9 e 13, nessa respectiva ordem. Logo em seguida, ele cria uma variável int i e utiliza para imprimir na tela, a partir de um loop for, todos os valores armazenados no vetor.
 
-/* Esse programa em C cria um vetor vet com três elementos (4, 9 e 13) e, em seguida, usa um loop for para imprimir os valores do vetor na tela.
-É declarado do vetor, inserindo os valores de entrada 4,9 e 13. Um laço for é usado para percorrer o vetor vet usando um ponteiro aritmético *(vet+i).
-O loop começa com i igual a 0 e continua enquanto i for menor que 3. Dentro do loop, a função printf é usada para imprimir o valor do vetor vet na 
-posição i. O operador * é usado para acessar o conteúdo armazenado no endereço de memória apontado pelo ponteiro vet+i. A função printf imprime o 
-valor na tela. Quando o loop termina, a função main retorna 0, indicando que o programa foi executado com sucesso. Assim, o programa imprime na 
-tela os valores do vetor na ordem em que eles aparecem: "4 9 13".*/
-
-
-//pragrama 2
-int main(){
-    int vet[] = {4,9,13};       
-    int i;                  
-    for(i=0;i<3;i++){           
-        printf("%X ",vet+i);    
-    }
-    return 0;
+b) int main(){
+  int vet[] = {4,9,13};
+  int i;
+  for(i=0;i<3;i++){
+    printf("%X ",vet+i); // (vet+i) se refere aos endereços de memória do vetor
+  }
 }
-/* A explicaçao para esse programa segue a logica do `progama 1` já explicado, com a diferença que como o formato de impressão %X é usado, 
-o endereço é impresso em formato hexadecimal, sendo que os valores impressos podem variar de acordo com o compildor usado */
+
+Este programa cria um vetor que armazena os valores 4, 9 e 13, nessa respectiva ordem. Logo em seguida, ele cria uma variável int i e utiliza para imprimir na tela, a partir de um loop for, todos os endereços referentes aos valores armazenados no vetor.
